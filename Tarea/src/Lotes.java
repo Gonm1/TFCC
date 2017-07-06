@@ -52,13 +52,7 @@ public class Lotes {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
+			new Object[/*AGREGAR EL NUMERO DE CADENAS INGRESADAS*/][/*AGREGAR EL NUMERO DE CADENAS INGRESADAS*/],
 			new String[] {
 				"Cadena", "Aceptada/Rechazada"
 			}

@@ -88,31 +88,10 @@ public class InterfaceUno {
 		frmMquinaDeTuring.getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"(qi,si)", "(qj,sj,movimiento)"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
 		table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
 		scrollPane.setViewportView(table_1);
 		scrollPane.setVisible(false);
 		lblTransicionesCargadas.setVisible(false);
-		
-		
-		
 		
 		mntmCargarTransiciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,6 +115,20 @@ public class InterfaceUno {
 				scrollPane.setVisible(true); // tabla
 			}
 		});
+		
+		table_1.setModel(new DefaultTableModel(
+				new Object[/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/][/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/],
+				new String[] {
+					"(qi,si)", "(qj,sj,movimiento)"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, String.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+			});
 		
 
 	}
