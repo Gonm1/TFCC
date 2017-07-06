@@ -141,6 +141,12 @@ public class Metodos{
 		return null; 
 	}
 
+	//Insertar estado sin transiciones:
+	public static ArrayList<Estado> InsertarEstadoSinTransicion(ArrayList<Estado> mt,String qi){
+		Estado estado_aux= new Estado(qi);
+		mt.add(estado_aux);
+		return mt;
+	}
 	
 	//metodo que lee desde el archivo xml
 	public static ArrayList<Estado> Leerxml(String ruta_archivo){
