@@ -56,7 +56,7 @@ public class Lotes {
 		
 		for (int j=0;j<iTrLot.resultados.size();j++ ) {
 			System.out.println("hola");
-			model.insertRow(model.getRowCount(),new Object[] {"("+iTrLot.cadenas_ingresadas[j]+")","("+iTrLot.resultados[j]+")"});
+			model.insertRow(model.getRowCount(),new Object[] {"("+iTrLot.cadenas_ingresadas.get(j)+")","("+iTrLot.resultados.get(j)+")"});
 		}
 		table_1.setModel(model);
 		
