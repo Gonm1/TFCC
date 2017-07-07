@@ -6,11 +6,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class iTrLot {
 
 	public JFrame frmTransicionLotes;
-	private JTextField textField;
 
 	
 
@@ -36,30 +37,27 @@ public class iTrLot {
 		frmTransicionLotes.getContentPane().add(btnContinuar);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(120, 115, 165, 20);
+		comboBox.setBounds(118, 191, 165, 20);
 		frmTransicionLotes.getContentPane().add(comboBox);
 		
 		JLabel lblEstadoFinal = new JLabel("Estado Final:");
-		lblEstadoFinal.setBounds(35, 118, 73, 14);
+		lblEstadoFinal.setBounds(35, 194, 73, 14);
 		frmTransicionLotes.getContentPane().add(lblEstadoFinal);
 		
-		JLabel lblCadena = new JLabel("Cadena:");
-		lblCadena.setBounds(35, 85, 46, 14);
+		JLabel lblCadena = new JLabel("Cadenas:");
+		lblCadena.setBounds(35, 66, 52, 14);
 		frmTransicionLotes.getContentPane().add(lblCadena);
-		
-		textField = new JTextField();
-		textField.setBounds(95, 81, 215, 23);
-		frmTransicionLotes.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JButton btnEnviarCadena = new JButton("Enviar Cadena");
-		btnEnviarCadena.setBounds(320, 81, 104, 23);
-		frmTransicionLotes.getContentPane().add(btnEnviarCadena);
 		
 		JLabel lblLotes = new JLabel("Reconocimiento por lotes");
 		lblLotes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblLotes.setBounds(95, 11, 280, 40);
 		frmTransicionLotes.getContentPane().add(lblLotes);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(104, 62, 271, 97);
+		frmTransicionLotes.getContentPane().add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 	}
-
 }
