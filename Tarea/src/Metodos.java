@@ -183,5 +183,18 @@ public class Metodos{
         }
 
     }
+
+    public static String[] todos_estados(ArrayList<Estado> mt){
+        int largo=2;
+        largo=mt.size();
+        String[] estados=new String[largo+1];
+        estados[0]="seleccionar...";
+        int aux=1;
+        for(Estado o: mt){
+            estados[aux]=o.qi;
+            aux++;
+        }
+        return estados;
+    }
  
 }

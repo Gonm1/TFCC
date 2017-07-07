@@ -9,24 +9,8 @@ import javax.swing.JButton;
 
 public class Lotes {
 
-	private JFrame frmReconocimientoPorLotes;
-	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Lotes window = new Lotes();
-					window.frmReconocimientoPorLotes.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JFrame frmReconocimientoPorLotes;
+	private JTable table_1;
 
 	/**
 	 * Create the application.
@@ -41,30 +25,43 @@ public class Lotes {
 	private void initialize() {
 		frmReconocimientoPorLotes = new JFrame();
 		frmReconocimientoPorLotes.setTitle("Reconocimiento por lotes");
-		frmReconocimientoPorLotes.setBounds(100, 100, 450, 300);
+		frmReconocimientoPorLotes.setBounds(100, 100, 650, 500);
 		frmReconocimientoPorLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReconocimientoPorLotes.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 197);
 		frmReconocimientoPorLotes.getContentPane().add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[/*AGREGAR EL NUMERO DE CADENAS INGRESADAS*/][/*AGREGAR EL NUMERO DE CADENAS INGRESADAS*/],
+
+		table_1 = new JTable();
+		DefaultTableModel model;
+		scrollPane.setViewportView(table_1);
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
 			new String[] {
-				"Cadena", "Aceptada/Rechazada"
+				"(qi, si)", "(qj, sj, movimiento)"
 			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class
+			) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
-		});
+			});
+		model = (DefaultTableModel) table_1.getModel();
+		scrollPane.setVisible(false);
+
 		
+		for (int j=0;j<iTrLot.resultados.size();j++ ) {
+			System.out.println("hola");
+			model.insertRow(model.getRowCount(),new Object[] {"("+iTrLot.cadenas_ingresadas[j]+")","("+iTrLot.resultados[j]+")"});
+		}
+		table_1.setModel(model);
+		
+
+		scrollPane.setVisible(true); 
 		JButton btnRunMt = new JButton("Run MT");
 		btnRunMt.setBounds(10, 227, 89, 23);
 		frmReconocimientoPorLotes.getContentPane().add(btnRunMt);

@@ -28,6 +28,8 @@ public class InterfaceUno {
 	private JFrame frmMquinaDeTuring;
 	private JTable table_1;
 
+	public static ArrayList<Estado> mt= new ArrayList<Estado>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -116,7 +118,7 @@ public class InterfaceUno {
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				fc.showOpenDialog(null);
 				//if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-				ArrayList<Estado> mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
+				mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
 
 				//llena la tabla
 				for(Estado o: mt){

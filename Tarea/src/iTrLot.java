@@ -8,11 +8,16 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 
 public class iTrLot {
 
 	public JFrame frmTransicionLotes;
-
+	public static ArrayList<String> cadenas_ingresadas=new ArrayList<String>();
+	public static ArrayList<Boolean> resultados=new ArrayList<Boolean>();
+	 
 	
 
 	/**
@@ -31,8 +36,9 @@ public class iTrLot {
 		frmTransicionLotes.setBounds(100, 100, 450, 300);
 		frmTransicionLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTransicionLotes.getContentPane().setLayout(null);
+		//InterfaceUno.mt
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBox = new JComboBox(Metodos.todos_estados(InterfaceUno.mt));
 		comboBox.setBounds(118, 191, 165, 20);
 		frmTransicionLotes.getContentPane().add(comboBox);
 		
@@ -59,5 +65,37 @@ public class iTrLot {
 		JButton btnRunMt = new JButton("Run MT");
 		btnRunMt.setBounds(335, 227, 89, 23);
 		frmTransicionLotes.getContentPane().add(btnRunMt);
+
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String e_final=comboBox.getSelectedItem().toString();
+				for(Estado o: InterfaceUno.mt){
+					if(o.qi.equals(e_final)) o.estadoFinal=true;
+				}
+		}
+		});
+
+		btnRunMt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] aux2=textArea.getText().split(",");
+				for(int i=0;i<aux2.length;i++){
+					cadenas_ingresadas.add(aux2[i]);
+				}
+
+			for(String o: cadenas_ingresadas){
+				Cinta cadena=Metodos.CrearCinta(o);
+				resultados.add(Metodos.verificarCadena(InterfaceUno.mt,cadena,"0",cadena.inicio));//se asume que el estado inicial es 0;
+			}
+
+			for (Boolean o:resultados) {
+			 	System.out.println(o);
+			 } 
+
+			 Lotes winda=new Lotes();
+			 winda.frmReconocimientoPorLotes.setVisible(true);
+
+		}
+		});
+
 	}
 }
