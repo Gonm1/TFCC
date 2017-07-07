@@ -97,14 +97,14 @@ public class InterfaceUno {
 			new String[] {
 				"(qi, si)", "(qj, sj, movimiento)"
 			}
-		) {
+			) {
 			boolean[] columnEditables = new boolean[] {
 				false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
-		});
+			});
 		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
 
@@ -138,9 +138,15 @@ public class InterfaceUno {
 
 			}
 		});
+
+		mntmReconocimientoPorLotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				iTrLot window = new iTrLot();
+				window.frame.setVisible(true);
+				frmMquinaDeTuring.setVisible(false);
+			}
+		});
 		
 	
-		
-
 	}
 }
