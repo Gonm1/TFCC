@@ -32,10 +32,6 @@ public class iTrLot {
 		frmTransicionLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTransicionLotes.getContentPane().setLayout(null);
 		
-		JButton btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(335, 227, 89, 23);
-		frmTransicionLotes.getContentPane().add(btnContinuar);
-		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(118, 191, 165, 20);
 		frmTransicionLotes.getContentPane().add(comboBox);
@@ -59,5 +55,9 @@ public class iTrLot {
 		
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		
+		JButton btnRunMt = new JButton("Run MT");
+		btnRunMt.setBounds(335, 227, 89, 23);
+		frmTransicionLotes.getContentPane().add(btnRunMt);
 	}
 }
