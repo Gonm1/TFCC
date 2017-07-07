@@ -25,7 +25,7 @@ public class Lotes {
 	private void initialize() {
 		frmReconocimientoPorLotes = new JFrame();
 		frmReconocimientoPorLotes.setTitle("Reconocimiento por lotes");
-		frmReconocimientoPorLotes.setBounds(100, 100, 650, 500);
+		frmReconocimientoPorLotes.setBounds(100, 100, 450, 300);
 		frmReconocimientoPorLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReconocimientoPorLotes.getContentPane().setLayout(null);
 		
@@ -61,9 +61,6 @@ public class Lotes {
 		table_1.setModel(model);
 		
 
-		scrollPane.setVisible(true); 
-		JButton btnRunMt = new JButton("Run MT");
-		btnRunMt.setBounds(10, 227, 89, 23);
-		frmReconocimientoPorLotes.getContentPane().add(btnRunMt);
+		scrollPane.setVisible(true);
 	}
 }
