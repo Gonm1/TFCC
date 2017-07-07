@@ -71,9 +71,23 @@ public class InterfaceUno {
 		
 		mnFile.add(mntmCargarTransiciones);
 		
+		/*BOTON RECONOCIMIENTO INDIVIDUAL*/
+		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Reconocimiento individual");
 		mnFile.add(mntmNewMenuItem);
 		mntmNewMenuItem.setEnabled(false);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				iTrInd Indiv = new iTrInd();
+				Indiv.frmTransicionReconocimientoIndividual.setVisible(true);
+				frmMquinaDeTuring.setVisible(false);
+			}
+		});
+		
+		/*BOTON RECONOCIMIENTO INDIVIDUAL*/
+		
+		
+		
 		JMenuItem mntmReconocimientoPorLotes = new JMenuItem("Reconocimiento por lotes");
 		mnFile.add(mntmReconocimientoPorLotes);
 		mntmReconocimientoPorLotes.setEnabled(false);
