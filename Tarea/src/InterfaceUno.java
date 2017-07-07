@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 public class InterfaceUno {
 
 	private JFrame frmMquinaDeTuring;
-	private JTable table;
 	private JTable table_1;
 
 	/**
@@ -96,9 +95,16 @@ public class InterfaceUno {
 			new Object[][] {
 			},
 			new String[] {
-				"(qi,si)", "(qj,sj,movimiento)"
+				"(qi, si)", "(qj, sj, movimiento)"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
 
