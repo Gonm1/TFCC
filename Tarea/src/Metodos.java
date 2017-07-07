@@ -184,6 +184,7 @@ public class Metodos{
 						//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
                     	}catch(Exception spe){
+                    		spe.printStackTrace();
                     		//algun problema del archivo xml mal formado.
                     	}
 
