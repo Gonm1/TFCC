@@ -101,34 +101,34 @@ public class InterfaceUno {
 				fc.showOpenDialog(null);
 				//if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				ArrayList<Estado> mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
-				//}
+				//
 				
-				table = new JTable();
-				table.setToolTipText("");
-				table.setBounds(62, 62, 303, 125);
-				frmMquinaDeTuring.getContentPane().add(table);
-				
-				lblTransicionesCargadas.setVisible(true);
-				mntmReconocimientoPorLotes.setEnabled(true);
-				mntmNewMenuItem.setEnabled(true); //Reconocimiento Individual
-				scrollPane.setVisible(true); // tabla
-			}
-		});
-		
-		table_1.setModel(new DefaultTableModel(
-				new Object[/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/][/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/],
+				//se define la tabla y muestra 
+				table_1.setModel(new DefaultTableModel(
+				new Object[Metodos.numero_transiciones][Metodos.numero_transiciones],
 				new String[] {
 					"(qi,si)", "(qj,sj,movimiento)"
 				}
-			) {
+				) {
+
 				Class[] columnTypes = new Class[] {
 					String.class, String.class
 				};
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];
 				}
-			});
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
+				});
+				
+				table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
+				lblTransicionesCargadas.setVisible(true);
+				mntmReconocimientoPorLotes.setEnabled(true);
+				mntmNewMenuItem.setEnabled(true); //Reconocimiento Individual
+				scrollPane.setVisible(true); // tabla
+
+			}
+		});
+		
+	
 		
 
 	}
