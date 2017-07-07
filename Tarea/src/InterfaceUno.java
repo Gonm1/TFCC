@@ -111,14 +111,20 @@ public class InterfaceUno {
 				fc.showOpenDialog(null);
 				//if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				ArrayList<Estado> mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
-				//
-				for(int i = 0 ; i < mt.size() ; i++) {
-					for(int j = 0 ; j < mt.get(i).todasTransiciones.size() ; j++)
-						model.insertRow(model.getRowCount(),new Object[] {"("+mt.get(i).qi +", "+ mt.get(i).todasTransiciones.get(j).si+")","("+mt.get(i).todasTransiciones.get(j).qj +", "+ mt.get(i).todasTransiciones.get(j).sj +", "+ mt.get(i).todasTransiciones.get(j).movimiento+")"});
-				}
 
+				//llena la tabla
+				for(Estado o: mt){
+            			try{
+           					for (Transicion t: o.todasTransiciones) {
+ 	          				model.insertRow(model.getRowCount(),new Object[] {"("+o.qi +", "+ t.si+")","("+t.qj +", "+ t.sj +", "+ t.movimiento+")"});
+ 	          				}
+            			}catch(Exception spe){
+	  						//estado sin transicion
+           				}
+           
+     			}
 
-				table.setModel(model);
+				table_1.setModel(model);
 				lblTransicionesCargadas.setVisible(true);
 				mntmReconocimientoPorLotes.setEnabled(true);
 				mntmNewMenuItem.setEnabled(true); //Reconocimiento Individual
