@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class InterfaceUno {
 
-	private JFrame frmMquinaDeTuring;
+	public JFrame frmMquinaDeTuring;
 	private JTable table_1;
 
 	public static ArrayList<Estado> mt= new ArrayList<Estado>();

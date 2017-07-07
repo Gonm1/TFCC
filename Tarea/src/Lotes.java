@@ -6,6 +6,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Lotes {
 
@@ -40,7 +42,7 @@ public class Lotes {
 			new Object[][] {
 			},
 			new String[] {
-				"(qi, si)", "(qj, sj, movimiento)"
+				"Cadena", "Aceptada/Rechazada)"
 			}
 			) {
 			boolean[] columnEditables = new boolean[] {
@@ -52,15 +54,28 @@ public class Lotes {
 			});
 		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
-
 		
 		for (int j=0;j<iTrLot.resultados.size();j++ ) {
-			System.out.println("hola");
+			//System.out.println("hola");
 			model.insertRow(model.getRowCount(),new Object[] {"("+iTrLot.cadenas_ingresadas.get(j)+")","("+iTrLot.resultados.get(j)+")"});
 		}
+		iTrLot.cadenas_ingresadas.clear();
 		table_1.setModel(model);
+		scrollPane.setVisible(true);
+		
+		JButton btnVolverAlInicio = new JButton("Volver al inicio");
+		btnVolverAlInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InterfaceUno frmMquinaDeTuring2 = new InterfaceUno();
+				frmMquinaDeTuring2.frmMquinaDeTuring.setVisible(true);
+				frmReconocimientoPorLotes.setVisible(false);
+				
+			}
+		});
+		btnVolverAlInicio.setBounds(10, 227, 113, 23);
+		frmReconocimientoPorLotes.getContentPane().add(btnVolverAlInicio);
 		
 
-		scrollPane.setVisible(true);
+		
 	}
 }

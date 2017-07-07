@@ -92,6 +92,7 @@ public class iTrLot {
 			 } 
 
 			 Lotes winda=new Lotes();
+			 frmTransicionLotes.setVisible(false);
 			 winda.frmReconocimientoPorLotes.setVisible(true);
 
 		}
