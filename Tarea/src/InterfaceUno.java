@@ -142,7 +142,7 @@ public class InterfaceUno {
 		mntmReconocimientoPorLotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				iTrLot window = new iTrLot();
-				window.frame.setVisible(true);
+				window.frmTransicionLotes.setVisible(true);
 				frmMquinaDeTuring.setVisible(false);
 			}
 		});
