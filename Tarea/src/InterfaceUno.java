@@ -82,16 +82,26 @@ public class InterfaceUno {
 		lblTransicionesCargadas.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTransicionesCargadas.setBounds(76, 11, 287, 40);
 		frmMquinaDeTuring.getContentPane().add(lblTransicionesCargadas);
+		lblTransicionesCargadas.setVisible(false);
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 50, 414, 179);
+		scrollPane.setBounds(10, 62, 414, 167);
 		frmMquinaDeTuring.getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
+		DefaultTableModel model;
 		scrollPane.setViewportView(table_1);
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"(qi,si)", "(qj,sj,movimiento)"
+			}
+		));
+		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
-		lblTransicionesCargadas.setVisible(false);
-		
+
 		mntmCargarTransiciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
@@ -102,24 +112,13 @@ public class InterfaceUno {
 				//if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				ArrayList<Estado> mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
 				//
-				
-				//se define la tabla y muestra 
-				table_1.setModel(new DefaultTableModel(
-				new Object[Metodos.numero_transiciones][Metodos.numero_transiciones],
-				new String[] {
-					"(qi,si)", "(qj,sj,movimiento)"
+				for(int i = 0 ; i < mt.size() ; i++) {
+					for(int j = 0 ; j < mt.get(i).todasTransiciones.size() ; j++)
+						model.insertRow(model.getRowCount(),new Object[] {"("+mt.get(i).qi +", "+ mt.get(i).todasTransiciones.get(j).si+")","("+mt.get(i).todasTransiciones.get(j).qj +", "+ mt.get(i).todasTransiciones.get(j).sj +", "+ mt.get(i).todasTransiciones.get(j).movimiento+")"});
 				}
-				) {
 
-				Class[] columnTypes = new Class[] {
-					String.class, String.class
-				};
-				public Class getColumnClass(int columnIndex) {
-					return columnTypes[columnIndex];
-				}
-				});
-				
-				table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
+
+				table.setModel(model);
 				lblTransicionesCargadas.setVisible(true);
 				mntmReconocimientoPorLotes.setEnabled(true);
 				mntmNewMenuItem.setEnabled(true); //Reconocimiento Individual
