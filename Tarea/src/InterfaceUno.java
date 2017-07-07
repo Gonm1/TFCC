@@ -20,11 +20,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class InterfaceUno {
 
 	private JFrame frmMquinaDeTuring;
 	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -79,10 +82,16 @@ public class InterfaceUno {
 		lblTransicionesCargadas.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTransicionesCargadas.setBounds(76, 11, 287, 40);
 		frmMquinaDeTuring.getContentPane().add(lblTransicionesCargadas);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 50, 414, 179);
+		frmMquinaDeTuring.getContentPane().add(scrollPane);
+		
+		table_1 = new JTable();
+		table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
+		scrollPane.setViewportView(table_1);
+		scrollPane.setVisible(false);
 		lblTransicionesCargadas.setVisible(false);
-		
-		
-		
 		
 		mntmCargarTransiciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,8 +112,23 @@ public class InterfaceUno {
 				lblTransicionesCargadas.setVisible(true);
 				mntmReconocimientoPorLotes.setEnabled(true);
 				mntmNewMenuItem.setEnabled(true); //Reconocimiento Individual
+				scrollPane.setVisible(true); // tabla
 			}
 		});
+		
+		table_1.setModel(new DefaultTableModel(
+				new Object[/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/][/*AGREGAR EL NUMERO DE TRANSICIONES DE LA MAQUINA*/],
+				new String[] {
+					"(qi,si)", "(qj,sj,movimiento)"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, String.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+			});
 		
 
 	}
