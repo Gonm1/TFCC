@@ -37,8 +37,9 @@ public class iTrLot {
 		frmTransicionLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTransicionLotes.getContentPane().setLayout(null);
 		//InterfaceUno.mt
-		
-		JComboBox comboBox = new JComboBox(Metodos.todos_estados(InterfaceUno.mt));
+		String[] opciones=Metodos.todos_estados(InterfaceUno.mt);
+		//JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<>(opciones);
 		comboBox.setBounds(118, 191, 165, 20);
 		frmTransicionLotes.getContentPane().add(comboBox);
 		
@@ -68,10 +69,7 @@ public class iTrLot {
 
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String e_final=comboBox.getSelectedItem().toString();
-				for(Estado o: InterfaceUno.mt){
-					if(o.qi.equals(e_final)) o.estadoFinal=true;
-				}
+				
 		}
 		});
 
@@ -82,15 +80,21 @@ public class iTrLot {
 					cadenas_ingresadas.add(aux2[i]);
 				}
 
-			for(String o: cadenas_ingresadas){
-				Cinta cadena=Metodos.CrearCinta(o);
-				resultados.add(Metodos.verificarCadena(InterfaceUno.mt,cadena,"0",cadena.inicio));//se asume que el estado inicial es 0;
+
+			String e_final=comboBox.getSelectedItem().toString();
+				for(Estado o: InterfaceUno.mt){
+					if(o.qi.equals(e_final)) o.estadoFinal=true;
+				}
+
+
+			Cinta cadena=new Cinta();
+			for(String g: cadenas_ingresadas){
+				cadena=Metodos.CrearCinta(g);
+				Boolean auxiliar=Metodos.verificarCadena(InterfaceUno.mt,cadena,"0",cadena.inicio);//se asume que el estado inicial es 0;
+				resultados.add(auxiliar);
+				cadena=null;
 			}
-
-			for (Boolean o:resultados) {
-			 	System.out.println(o);
-			 } 
-
+			
 			 Lotes winda=new Lotes();
 			 frmTransicionLotes.setVisible(false);
 			 winda.frmReconocimientoPorLotes.setVisible(true);
