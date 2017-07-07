@@ -1,10 +1,11 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JTextPane;
 
 public class Indiv {
 
-	private JFrame frame;
+	private JFrame frmReconocimientoIndividual;
 
 	/**
 	 * Launch the application.
@@ -14,7 +15,7 @@ public class Indiv {
 			public void run() {
 				try {
 					Indiv window = new Indiv();
-					window.frame.setVisible(true);
+					window.frmReconocimientoIndividual.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,9 +34,14 @@ public class Indiv {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmReconocimientoIndividual = new JFrame();
+		frmReconocimientoIndividual.setTitle("Reconocimiento Individual");
+		frmReconocimientoIndividual.setBounds(100, 100, 450, 300);
+		frmReconocimientoIndividual.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmReconocimientoIndividual.getContentPane().setLayout(null);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(51, 42, 332, 165);
+		frmReconocimientoIndividual.getContentPane().add(textPane);
 	}
-
 }
