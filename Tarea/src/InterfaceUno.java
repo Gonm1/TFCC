@@ -88,7 +88,6 @@ public class InterfaceUno {
 		frmMquinaDeTuring.getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
 		scrollPane.setViewportView(table_1);
 		scrollPane.setVisible(false);
 		lblTransicionesCargadas.setVisible(false);
@@ -129,6 +128,7 @@ public class InterfaceUno {
 					return columnTypes[columnIndex];
 				}
 			});
+		table_1.getColumnModel().getColumn(1).setPreferredWidth(104);
 		
 
 	}
