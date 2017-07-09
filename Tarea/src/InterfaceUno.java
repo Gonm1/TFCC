@@ -28,6 +28,7 @@ public class InterfaceUno {
 				try {
 					InterfaceUno window = new InterfaceUno();
 					window.frmMquinaDeTuring.setVisible(true);
+					window.frmMquinaDeTuring.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,7 +43,6 @@ public class InterfaceUno {
 	private void initialize() {
 		frmMquinaDeTuring = new JFrame();
 		frmMquinaDeTuring.setResizable(false);
-		frmMquinaDeTuring.setLocationRelativeTo(null);
 		frmMquinaDeTuring.setTitle("M\u00E1quina de Turing - Proyecto FCC");
 		frmMquinaDeTuring.setBounds(100, 100, 450, 300);
 		frmMquinaDeTuring.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,6 +73,7 @@ public class InterfaceUno {
 				 */
 				iTrInd Indiv = new iTrInd();
 				Indiv.frmTransicionReconocimientoIndividual.setVisible(true);
+				Indiv.frmTransicionReconocimientoIndividual.setLocationRelativeTo(null);
 				frmMquinaDeTuring.setVisible(false);
 			}
 		});
@@ -150,6 +151,7 @@ public class InterfaceUno {
 			public void actionPerformed(ActionEvent e) {
 				iTrLot window = new iTrLot();
 				window.frmTransicionLotes.setVisible(true);
+				window.frmTransicionLotes.setLocationRelativeTo(null);
 				frmMquinaDeTuring.setVisible(false);
 			}
 		});

@@ -26,7 +26,6 @@ public class iTrInd {
 		//se define el jFrame y sus caracteristicas:
 		frmTransicionReconocimientoIndividual = new JFrame();
 		frmTransicionReconocimientoIndividual.setResizable(false);
-		frmTransicionReconocimientoIndividual.setLocationRelativeTo(null);
 		frmTransicionReconocimientoIndividual.setTitle("Transicion Reconocimiento Individual");
 		frmTransicionReconocimientoIndividual.setBounds(100, 100, 450, 300);
 		frmTransicionReconocimientoIndividual.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
