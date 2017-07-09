@@ -1,5 +1,10 @@
-import java.awt.EventQueue;
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JFileChooser;

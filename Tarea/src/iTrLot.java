@@ -1,3 +1,8 @@
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JComboBox;

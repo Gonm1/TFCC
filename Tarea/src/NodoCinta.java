@@ -1,3 +1,8 @@
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 public class NodoCinta{
 	String simbolo;
 	NodoCinta ant;

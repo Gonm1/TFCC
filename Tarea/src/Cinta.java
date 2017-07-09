@@ -1,3 +1,8 @@
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 public class Cinta{
 	NodoCinta inicio;
 	NodoCinta fin;

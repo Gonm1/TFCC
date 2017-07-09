@@ -1,3 +1,9 @@
+
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;

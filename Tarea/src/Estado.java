@@ -1,3 +1,8 @@
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 import java.util.ArrayList;
 
 public class Estado{

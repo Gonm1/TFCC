@@ -1,3 +1,8 @@
+/*
+ * Integrantes:
+ * 	- Manuel Lepe Faúndez.
+ * 	- Gonzalo Miranda Cabrera.
+*/
 public class Transicion{
 	String sj;
 	String si;
