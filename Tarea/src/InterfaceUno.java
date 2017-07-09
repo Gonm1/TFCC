@@ -2,23 +2,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JMenu;
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -62,17 +55,15 @@ public class InterfaceUno {
 		frmMquinaDeTuring.setBounds(100, 100, 450, 300);
 		frmMquinaDeTuring.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuItem mntmCargarTransiciones = new JMenuItem("Cargar transiciones");
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		frmMquinaDeTuring.setJMenuBar(menuBar);
-		
+
 		JMenu mnFile = new JMenu("Operaciones");
 		menuBar.add(mnFile);
-		
+
 		mnFile.add(mntmCargarTransiciones);
-		
 		/*BOTON RECONOCIMIENTO INDIVIDUAL*/
-		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Reconocimiento individual");
 		mnFile.add(mntmNewMenuItem);
 		mntmNewMenuItem.setEnabled(false);
@@ -84,43 +75,39 @@ public class InterfaceUno {
 			}
 		});
 		
-		/*BOTON RECONOCIMIENTO INDIVIDUAL*/
-		
-		
-		
 		JMenuItem mntmReconocimientoPorLotes = new JMenuItem("Reconocimiento por lotes");
 		mnFile.add(mntmReconocimientoPorLotes);
 		mntmReconocimientoPorLotes.setEnabled(false);
 		frmMquinaDeTuring.getContentPane().setLayout(null);
-		
+
 		JLabel lblTransicionesCargadas = new JLabel("TRANSICIONES CARGADAS");
 		lblTransicionesCargadas.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTransicionesCargadas.setBounds(76, 11, 287, 40);
 		frmMquinaDeTuring.getContentPane().add(lblTransicionesCargadas);
 		lblTransicionesCargadas.setVisible(false);
-		
-		
+
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 62, 414, 167);
 		frmMquinaDeTuring.getContentPane().add(scrollPane);
-		
+
 		table_1 = new JTable();
 		DefaultTableModel model;
 		scrollPane.setViewportView(table_1);
 		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"(qi, si)", "(qj, sj, movimiento)"
-			}
-			) {
+				new Object[][] {
+				},
+				new String[] {
+						"(qi, si)", "(qj, sj, movimiento)"
+				}
+				) {
 			boolean[] columnEditables = new boolean[] {
-				false, false
+					false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
-			});
+		});
 		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
 
@@ -131,20 +118,19 @@ public class InterfaceUno {
 				fc.setDialogTitle("This is a JFileChooser");
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				fc.showOpenDialog(null);
-				//if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
 
 				//llena la tabla
 				for(Estado o: mt){
-            			try{
-           					for (Transicion t: o.todasTransiciones) {
- 	          				model.insertRow(model.getRowCount(),new Object[] {"("+o.qi +", "+ t.si+")","("+t.qj +", "+ t.sj +", "+ t.movimiento+")"});
- 	          				}
-            			}catch(Exception spe){
-	  						//estado sin transicion
-           				}
-           
-     			}
+					try{
+						for (Transicion t: o.todasTransiciones) {
+							model.insertRow(model.getRowCount(),new Object[] {"("+o.qi +", "+ t.si+")","("+t.qj +", "+ t.sj +", "+ t.movimiento+")"});
+						}
+					}catch(Exception spe){
+						//estado sin transicion
+					}
+
+				}
 
 				table_1.setModel(model);
 				lblTransicionesCargadas.setVisible(true);
@@ -162,9 +148,5 @@ public class InterfaceUno {
 				frmMquinaDeTuring.setVisible(false);
 			}
 		});
-		
-		
-		
-	
 	}
 }
