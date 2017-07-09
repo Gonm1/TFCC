@@ -22,10 +22,6 @@ public class InterfaceUno {
 	private JTable table_1;
 
 	public static ArrayList<Estado> mt= new ArrayList<Estado>();
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,16 +35,10 @@ public class InterfaceUno {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public InterfaceUno() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
 		frmMquinaDeTuring = new JFrame();
 		frmMquinaDeTuring.setResizable(false);
@@ -56,38 +46,49 @@ public class InterfaceUno {
 		frmMquinaDeTuring.setTitle("M\u00E1quina de Turing - Proyecto FCC");
 		frmMquinaDeTuring.setBounds(100, 100, 450, 300);
 		frmMquinaDeTuring.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JMenuItem mntmCargarTransiciones = new JMenuItem("Cargar transiciones");
-
+		
+		/*CREA BARRA DE MENÚ Y LA AGREGA AL JFRAME*/
 		JMenuBar menuBar = new JMenuBar();
 		frmMquinaDeTuring.setJMenuBar(menuBar);
-
+		
+		/*AÑADE UN MENÚ LLAMADO OPERACIONES*/
 		JMenu mnFile = new JMenu("Operaciones");
 		menuBar.add(mnFile);
-
+		
+		/*AÑADE OPCION DE CARGAR TRANSICIONES*/
+		JMenuItem mntmCargarTransiciones = new JMenuItem("Cargar transiciones");
 		mnFile.add(mntmCargarTransiciones);
+		
+
 		/*BOTON RECONOCIMIENTO INDIVIDUAL*/
 		JMenuItem mntmNewMenuItem = new JMenuItem("Reconocimiento individual");
 		mnFile.add(mntmNewMenuItem);
 		mntmNewMenuItem.setEnabled(false);
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/* 
+				 * EVENTO DE CLICK EN RECONOCIMIENTO IDIVIDUAL
+				 * CREA UNA NUEVA VENTANA DE TRANSICION Y CAMBIA LA VISIBILIDAD
+				 * DE LA INTERFAZ PRINCIPAL
+				 */
 				iTrInd Indiv = new iTrInd();
 				Indiv.frmTransicionReconocimientoIndividual.setVisible(true);
 				frmMquinaDeTuring.setVisible(false);
 			}
 		});
 		
+		/*CREA OPCION DE RECONOCIMIENTO POR LOTES*/
 		JMenuItem mntmReconocimientoPorLotes = new JMenuItem("Reconocimiento por lotes");
 		mnFile.add(mntmReconocimientoPorLotes);
 		mntmReconocimientoPorLotes.setEnabled(false);
 		frmMquinaDeTuring.getContentPane().setLayout(null);
-
+		
+		/*AÑADE LABEL DE TRANSICIONES CARGADAS*/
 		JLabel lblTransicionesCargadas = new JLabel("TRANSICIONES CARGADAS");
 		lblTransicionesCargadas.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblTransicionesCargadas.setBounds(76, 11, 287, 40);
 		frmMquinaDeTuring.getContentPane().add(lblTransicionesCargadas);
 		lblTransicionesCargadas.setVisible(false);
-
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 62, 414, 167);
@@ -112,12 +113,13 @@ public class InterfaceUno {
 		});
 		model = (DefaultTableModel) table_1.getModel();
 		scrollPane.setVisible(false);
-
+		
+		/*EVENTO DE CLICK EN CARGAR TRANSICIONES*/
 		mntmCargarTransiciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser();
 				fc.setCurrentDirectory(new java.io.File("user.home"));
-				fc.setDialogTitle("This is a JFileChooser");
+				fc.setDialogTitle("FILE CHOOSER");
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				fc.showOpenDialog(null);
 				mt = Metodos.Leerxml(fc.getSelectedFile().getAbsolutePath());
@@ -142,7 +144,8 @@ public class InterfaceUno {
 
 			}
 		});
-
+		
+		/*EVENTO DE CLICK EN RECONOCIMIENTO POR LOTES*/
 		mntmReconocimientoPorLotes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				iTrLot window = new iTrLot();
