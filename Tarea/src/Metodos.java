@@ -127,7 +127,9 @@ public class Metodos{
 		return mt;    		
 
 	}
-
+	/*
+	 * METODO QUE CREA LA CINTA DE LA MAQUINA
+	 */
 	public static Cinta CrearCinta(String cadena){
 		Cinta cadenas=new Cinta();
 		String[] separada = cadena.split(""); 
@@ -139,7 +141,7 @@ public class Metodos{
 
 		return cadenas;
 	}
-
+	
 	public static boolean verificarCadena(ArrayList<Estado> mt,Cinta cadena, String qii,NodoCinta caracter){
 		Agregar_movimientos(qii,cadena,caracter);
 		for(Estado o:mt){
