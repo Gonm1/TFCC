@@ -52,6 +52,7 @@ public class InterfaceUno {
 	private void initialize() {
 		frmMquinaDeTuring = new JFrame();
 		frmMquinaDeTuring.setResizable(false);
+		frmMquinaDeTuring.setLocationRelativeTo(null);
 		frmMquinaDeTuring.setTitle("M\u00E1quina de Turing - Proyecto FCC");
 		frmMquinaDeTuring.setBounds(100, 100, 450, 300);
 		frmMquinaDeTuring.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

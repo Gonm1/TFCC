@@ -32,6 +32,7 @@ public class iTrInd {
 	private void initialize() {
 		frmTransicionReconocimientoIndividual = new JFrame();
 		frmTransicionReconocimientoIndividual.setResizable(false);
+		frmTransicionReconocimientoIndividual.setLocationRelativeTo(null);
 		frmTransicionReconocimientoIndividual.setTitle("Transicion Reconocimiento Individual");
 		frmTransicionReconocimientoIndividual.setBounds(100, 100, 450, 300);
 		frmTransicionReconocimientoIndividual.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

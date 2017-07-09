@@ -38,6 +38,7 @@ public class Indiv {
 		frmReconocimientoIndividual.setBounds(100, 100, 600, 544);
 		frmReconocimientoIndividual.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReconocimientoIndividual.getContentPane().setLayout(null);
+		frmReconocimientoIndividual.setLocationRelativeTo(null);
 
 		JLabel lblCinta = new JLabel("Cinta:");
 		lblCinta.setFont(new Font("Tahoma", Font.PLAIN, 15));

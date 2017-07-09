@@ -25,6 +25,7 @@ public class Lotes {
 		frmReconocimientoPorLotes.setBounds(100, 100, 450, 300);
 		frmReconocimientoPorLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReconocimientoPorLotes.getContentPane().setLayout(null);
+		frmReconocimientoPorLotes.setLocationRelativeTo(null);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 239);

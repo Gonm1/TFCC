@@ -34,6 +34,7 @@ public class iTrLot {
 		frmTransicionLotes.setBounds(100, 100, 450, 300);
 		frmTransicionLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTransicionLotes.getContentPane().setLayout(null);
+		frmTransicionLotes.setLocationRelativeTo(null);
 		
 		String[] opciones=Metodos.todos_estados(InterfaceUno.mt);
 		JComboBox<String> comboBox = new JComboBox<>(opciones);
