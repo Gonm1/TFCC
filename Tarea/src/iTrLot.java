@@ -29,11 +29,12 @@ public class iTrLot {
 	 */
 	private void initialize() {
 		frmTransicionLotes = new JFrame();
+		frmTransicionLotes.setResizable(false);
 		frmTransicionLotes.setTitle("Transicion Lotes");
 		frmTransicionLotes.setBounds(100, 100, 450, 300);
 		frmTransicionLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTransicionLotes.getContentPane().setLayout(null);
-		//InterfaceUno.mt
+		
 		String[] opciones=Metodos.todos_estados(InterfaceUno.mt);
 		JComboBox<String> comboBox = new JComboBox<>(opciones);
 		comboBox.setBounds(118, 191, 165, 20);

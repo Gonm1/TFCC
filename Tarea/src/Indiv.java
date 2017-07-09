@@ -34,6 +34,7 @@ public class Indiv {
 	private void initialize(){
 		frmReconocimientoIndividual = new JFrame();
 		frmReconocimientoIndividual.setTitle("Reconocimiento Individual");
+		frmReconocimientoIndividual.setResizable(false);
 		frmReconocimientoIndividual.setBounds(100, 100, 600, 544);
 		frmReconocimientoIndividual.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmReconocimientoIndividual.getContentPane().setLayout(null);

@@ -20,6 +20,7 @@ public class Lotes {
 	 */
 	private void initialize() {
 		frmReconocimientoPorLotes = new JFrame();
+		frmReconocimientoPorLotes.setResizable(false);
 		frmReconocimientoPorLotes.setTitle("Reconocimiento por lotes");
 		frmReconocimientoPorLotes.setBounds(100, 100, 450, 300);
 		frmReconocimientoPorLotes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
