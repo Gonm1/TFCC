@@ -81,7 +81,7 @@ public class iTrLot {
 				}
 
 
-			String e_final=comboBox.getSelectedItem().toString();
+				String e_final=comboBox.getSelectedItem().toString();
 				for(Estado o: InterfaceUno.mt){
 					if(o.qi.equals(e_final)) o.estadoFinal=true;
 				}

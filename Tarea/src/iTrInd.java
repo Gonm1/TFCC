@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -12,22 +15,12 @@ public class iTrInd {
 	public JFrame frmTransicionReconocimientoIndividual;
 	private JTextField textFieldInd;
 	private JComboBox comboBox;
+	public static String cadena_ingresada;
+	public static Boolean resultado;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					iTrInd window = new iTrInd();
-					window.frmTransicionReconocimientoIndividual.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
@@ -67,9 +60,6 @@ public class iTrInd {
 		frmTransicionReconocimientoIndividual.getContentPane().add(comboBox);
 		
 		
-		
-		
-		
 		JButton btnContinuar = new JButton("Continuar");
 		btnContinuar.setBounds(335, 227, 89, 23);
 		frmTransicionReconocimientoIndividual.getContentPane().add(btnContinuar);
@@ -77,5 +67,22 @@ public class iTrInd {
 		JLabel lblEstadoFinal = new JLabel("Estado Final:");
 		lblEstadoFinal.setBounds(56, 106, 77, 14);
 		frmTransicionReconocimientoIndividual.getContentPane().add(lblEstadoFinal);
+		
+		btnContinuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadena_ingresada=textFieldInd.getText();
+				String e_final=comboBox.getSelectedItem().toString();
+				for(Estado o: InterfaceUno.mt){
+					if(o.qi.equals(e_final)) o.estadoFinal=true;
+				}
+				Cinta cadena=new Cinta();
+				cadena=Metodos.CrearCinta(cadena_ingresada);
+				resultado=Metodos.verificarCadena(InterfaceUno.mt,cadena,"0",cadena.inicio);//se asume que el estado inicial es 0;
+				Indiv window = new Indiv();
+				window.frmReconocimientoIndividual.setVisible(true);
+				frmTransicionReconocimientoIndividual.setVisible(false);
+
+		}
+		});
 	}
 }

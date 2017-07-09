@@ -7,9 +7,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class Metodos{
-	public static int numero_transiciones=0;
+  public static ArrayList<String> movimiento_cinta=new ArrayList<String>();
+  public static ArrayList<String> proximo_movimiento=new ArrayList<String>();
+  public static ArrayList<Integer> numero_cabezal=new ArrayList<Integer>();
+  public static ArrayList<String> estado_actual=new ArrayList<String>();
+	
+  public static int numero_transiciones=0;
 	//busca si se encuentra el estado qi
 	public static boolean Estaqi(ArrayList<Estado> mt,String qi){
 				for(Estado o: mt){
@@ -136,6 +143,7 @@ public class Metodos{
     }
 
     public static boolean verificarCadena(ArrayList<Estado> mt,Cinta cadena, String qii,NodoCinta caracter){
+      Agregar_movimientos(qii,cadena,caracter);
     	for(Estado o:mt){
     			if(o.qi.equals(qii)){
     				//En caso de que no tenga transiciones y o.todasTransiciones este null por eso el try;
@@ -146,21 +154,24 @@ public class Metodos{
  	          						//System.out.println("movimiento= "+t.movimiento);
  	          						if(!t.movimiento.equals("E")){
  	          							NodoCinta aux=cadena.moverse(caracter,t.movimiento);
+                          agregar_Smovimiento(t.qj,t.sj,t.movimiento);
  	          							return verificarCadena(mt,cadena,t.qj,aux);
  	          						}else{
+                          agregar_Smovimiento(t.qj,t.sj,"E");
  	          							return verificarCadena(mt,cadena,t.qj,caracter);
  	          						}
- 	          					}
-           					}
+ 	          			}
+           			}
            						
-           				}catch(Exception spe){
-	  						if(o.estadoFinal==true)	return true;
+           		}catch(Exception spe){
+                    agregar_Smovimiento("null","null","null");
+	  						   if(o.estadoFinal==true)	return true;
            					else return false;
-           				}
-           			
+           		}
+              //no encuentra transiciones que no tiene transiciones para si;
+              agregar_Smovimiento("null","null","null");
       				if(o.estadoFinal==true) return true;
            			else return false;				
-
     			}
     	}
     				
@@ -196,5 +207,26 @@ public class Metodos{
         }
         return estados;
     }
- 
+
+    public static void Agregar_movimientos(String qi,Cinta cadena,NodoCinta cabezal){
+            estado_actual.add(qi);
+            String ca="##";
+            int i=0;
+            NodoCinta paso = cadena.inicio;
+            while(paso!=null){
+                  ca=ca+paso.simbolo;
+                  if(paso==cabezal) numero_cabezal.add(i+2);
+                  paso = paso.sig;
+              i++;
+            }
+            ca=ca+"##";
+            movimiento_cinta.add(ca);
+    }
+
+    public static void agregar_Smovimiento(String qj,String sj,String movimiento){
+          if(!qj.equals("null")) proximo_movimiento.add("("+qj+","+sj+","+movimiento+")");         
+          else proximo_movimiento.add("(No hay movimiento)"); 
+
+    }
+
 }
