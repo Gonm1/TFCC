@@ -9,12 +9,14 @@ import java.util.ArrayList;
 
 
 public class Metodos{
+	//Variables estaticas que se usan la interface Individual:
 	public static ArrayList<String> movimiento_cinta=new ArrayList<String>();
 	public static ArrayList<String> proximo_movimiento=new ArrayList<String>();
 	public static ArrayList<Integer> numero_cabezal=new ArrayList<Integer>();
 	public static ArrayList<String> estado_actual=new ArrayList<String>();
-
 	public static int numero_transiciones=0;
+
+
 	//busca si se encuentra el estado qi
 	public static boolean Estaqi(ArrayList<Estado> mt,String qi){
 		for(Estado o: mt){
@@ -23,7 +25,7 @@ public class Metodos{
 		return false;
 	}
 
-	//insertar estado completo:
+	//insertar estado completo con la MT:
 	public static ArrayList<Estado> InsertarEstado(ArrayList<Estado> mt,String qi,String si,String sj,String qj,String movimiento){
 		Estado estado_aux= new Estado(qi);
 		ArrayList<Transicion> transiciones_aux= new ArrayList<Transicion>();
@@ -34,7 +36,7 @@ public class Metodos{
 		return mt;
 	}
 
-	//insertar Solo transiciones (el estado qi ya existe en la mt):
+	//Insertar solo transiciones (el estado qi ya existe en la mt):
 	public static ArrayList<Estado> InsertarTransicion(ArrayList<Estado> mt,String qi,String si,String sj,String qj,String movimiento){
 		for(Estado o: mt){
 			if(o.qi.equals(qi)){
@@ -46,14 +48,14 @@ public class Metodos{
 		return null; 
 	}
 
-	//Insertar estado sin transiciones:
+	//Insertar estado sin transiciones en MT::
 	public static ArrayList<Estado> InsertarEstadoSinTransicion(ArrayList<Estado> mt,String qi){
 		Estado estado_aux= new Estado(qi);
 		mt.add(estado_aux);
 		return mt;
 	}
 
-	//metodo que lee desde el archivo xml
+	//Metodo que lee desde el archivo xml y retorna la MT:
 	public static ArrayList<Estado> Leerxml(String ruta_archivo){
 
 		ArrayList<Estado> mt= new ArrayList<Estado>();
@@ -65,17 +67,19 @@ public class Metodos{
 		}catch (Exception spe){
 			// Algún tipo de error: fichero no accesible, formato de XML incorrecto, etc.
 		}
-
+		//Se determina el Nodo Raiz t los nodos Hijos:
 		Node nodoRaiz = documento.getFirstChild();
 		NodeList listaNodosHijos = nodoRaiz.getChildNodes();
+		//Se recorre los Nodos Hijos:
 		for (int i=0; i<(listaNodosHijos.getLength()); i++){
 			Node unNodoHijo;
 			unNodoHijo = listaNodosHijos.item(i);
 			if (unNodoHijo.getNodeType() == Node.ELEMENT_NODE) {
+				//Seguarda en String las etiquetas:
 				numero_transiciones++;
 				Element e = (Element) unNodoHijo;
 				String qi= e.getElementsByTagName("qi").item(0).getTextContent();
-
+				//en casi del archivo solo tenga estado inicial:
 				try{
 					String si= e.getElementsByTagName("si").item(0).getTextContent();
 					String sj= e.getElementsByTagName("sj").item(0).getTextContent();
@@ -84,9 +88,9 @@ public class Metodos{
 
 					//inserta las transiciones(primero verifica si existe el estado 
 					if(Estaqi(mt,qi)) 
-						mt=InsertarTransicion(mt,qi,si,sj,qj,movimiento);
+						mt=InsertarTransicion(mt,qi,si,sj,qj,movimiento);//si existe el estado solo inserta la transición
 					else 
-						mt=InsertarEstado(mt,qi,si,sj,qj,movimiento);
+						mt=InsertarEstado(mt,qi,si,sj,qj,movimiento); //si no existe el estado qi inserta el estado completo.
 					//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 				}catch(Exception spe){
@@ -96,7 +100,9 @@ public class Metodos{
 
 			}
 		}
-		mt=ComprobarEstados(mt);
+	
+		mt=ComprobarEstados(mt);//Comprueba si estan todo los estados(cuando en mt hay un estado sin transicion no se agrega al xml
+								//este metodo agrega esos estados
 		return mt;
 
 	}
@@ -106,6 +112,7 @@ public class Metodos{
 		ArrayList<String> para_insertar=new ArrayList<String>();
 		boolean aux2=false;	
 		for(Estado o:mt){
+			//el Try catch es por si un estado no tiene transiciones.
 			try{
 				for (Transicion t: o.todasTransiciones) {
 					if(!(Estaqi(mt,t.qj))){
@@ -121,15 +128,15 @@ public class Metodos{
 
 			}
 		}
+		//en el arraylist para_insertar están todos los estados que se deben insertar
 		for(String o:para_insertar){
 			mt=InsertarEstadoSinTransicion(mt,o);		
 		}       
+		
 		return mt;    		
-
 	}
-	/*
-	 * METODO QUE CREA LA CINTA DE LA MAQUINA
-	 */
+	
+	//METODO QUE CREA LA CINTA DE LA MAQUINA
 	public static Cinta CrearCinta(String cadena){
 		Cinta cadenas=new Cinta();
 		String[] separada = cadena.split(""); 
@@ -142,33 +149,34 @@ public class Metodos{
 		return cadenas;
 	}
 	
+	//Metodo recursivo que se encarga de verificar si una cadena pertenece a la cinta 
 	public static boolean verificarCadena(ArrayList<Estado> mt,Cinta cadena, String qii,NodoCinta caracter){
-		Agregar_movimientos(qii,cadena,caracter);
+		Agregar_movimientos(qii,cadena,caracter); //agrega un nuevo movimiento para ser mostrado en la parte dinamica de la interface Individual
 		for(Estado o:mt){
 			if(o.qi.equals(qii)){
 				//En caso de que no tenga transiciones y o.todasTransiciones este null por eso el try;
 				try{
 					for (Transicion t: o.todasTransiciones) {
 						if(t.si.equals(caracter.simbolo)){
-							caracter.simbolo=t.sj;
-							//System.out.println("movimiento= "+t.movimiento);
-							if(!t.movimiento.equals("E")){
+							caracter.simbolo=t.sj;//cambia si por sj.
+							if(!t.movimiento.equals("E")){ 
 								NodoCinta aux=cadena.moverse(caracter,t.movimiento);
 								agregar_Smovimiento(t.qj,t.sj,t.movimiento);
-								return verificarCadena(mt,cadena,t.qj,aux);
+								return verificarCadena(mt,cadena,t.qj,aux); //llamada recursiva con los nuevas variables 
 							}else{
 								agregar_Smovimiento(t.qj,t.sj,"E");
-								return verificarCadena(mt,cadena,t.qj,caracter);
+								return verificarCadena(mt,cadena,t.qj,caracter);//llamada recursiva con el mismo cacacter ya que no se mueve la cinta.
 							}
 						}
 					}
 
 				}catch(Exception spe){
 					agregar_Smovimiento("null","null","null");
-					if(o.estadoFinal==true)	return true;
-					else return false;
+					if(o.estadoFinal==true)	return true; //si se llega a un estado sin transiciones y es final retorna true(la cadena es aceptada por el lenguaje)
+					else return false; //Caso contrario.
 				}
-				//no encuentra transiciones que no tiene transiciones para si;
+				
+				//no encuentra transiciones para si:
 				agregar_Smovimiento("null","null","null");
 				if(o.estadoFinal==true) return true;
 				else return false;				
@@ -178,23 +186,7 @@ public class Metodos{
 		return true;
 	}
 
-	//metodo extra que muestra el estado por pantalla:
-	public static void mostrarMaquina(ArrayList<Estado> mt){
-		System.out.println("MAQUINA DE TURING:");
-		for(Estado o: mt){
-			System.out.print("Estado "+ o.qi+" Tranciciones:");
-			try{
-				for (Transicion t: o.todasTransiciones) {
-					System.out.print(" si="+t.si+" sj="+t.sj+" qj="+t.qj+" Movimiento="+t.movimiento+" ||");
-				}
-			}catch(Exception spe){
-				System.out.println("Sin transiciones");
-			}
-			System.out.println();	
-		}
-
-	}
-
+	//Agrega todos los estados a un <arraylist<estado> para cuando hay que escoger un estado final 
 	public static String[] todos_estados(ArrayList<Estado> mt){
 		int largo=2;
 		largo=mt.size();
@@ -208,6 +200,7 @@ public class Metodos{
 		return estados;
 	}
 
+	//agrega String para ver como va quedando la cinta nos sirvira para la parte dinamica
 	public static void Agregar_movimientos(String qi,Cinta cadena,NodoCinta cabezal){
 		estado_actual.add(qi);
 		String ca="##";
@@ -223,6 +216,7 @@ public class Metodos{
 		movimiento_cinta.add(ca);
 	}
 
+	//agrega el próximo movimiento que se hará.
 	public static void agregar_Smovimiento(String qj,String sj,String movimiento){
 		if(!qj.equals("null")) proximo_movimiento.add("("+qj+","+sj+","+movimiento+")");         
 		else proximo_movimiento.add("(No hay movimiento)"); 

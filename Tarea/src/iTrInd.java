@@ -11,17 +11,10 @@ public class iTrInd {
 
 	public JFrame frmTransicionReconocimientoIndividual;
 	private JTextField textFieldInd;
-	private JComboBox comboBox;
+	//Variables que se usan en la parte dinamica:
 	public static String cadena_ingresada;
 	public static Boolean resultado;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the application.
-	 */
 	public iTrInd() {
 		initialize();
 	}
@@ -30,6 +23,7 @@ public class iTrInd {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//se define el jFrame y sus caracteristicas:
 		frmTransicionReconocimientoIndividual = new JFrame();
 		frmTransicionReconocimientoIndividual.setResizable(false);
 		frmTransicionReconocimientoIndividual.setLocationRelativeTo(null);
@@ -52,31 +46,37 @@ public class iTrInd {
 		lblCadena.setBounds(56, 70, 46, 14);
 		frmTransicionReconocimientoIndividual.getContentPane().add(lblCadena);
 
-
+		//Se agrgan todos las opciones el JComBox para que se pueda eleguir estado final.
 		String[] opciones=Metodos.todos_estados(InterfaceUno.mt);
 		JComboBox<String> comboBox = new JComboBox<>(opciones);
 		comboBox.setBounds(122, 103, 161, 20);
 		frmTransicionReconocimientoIndividual.getContentPane().add(comboBox);
 
 
-		JButton btnContinuar = new JButton("Continuar");
+		JButton btnContinuar = new JButton("Run MT");
 		btnContinuar.setBounds(335, 227, 89, 23);
 		frmTransicionReconocimientoIndividual.getContentPane().add(btnContinuar);
 
 		JLabel lblEstadoFinal = new JLabel("Estado Final:");
-		lblEstadoFinal.setBounds(56, 106, 77, 14);
+		lblEstadoFinal.setBounds(48, 106, 77, 14);
 		frmTransicionReconocimientoIndividual.getContentPane().add(lblEstadoFinal);
 
+		//Evento del boton continuar:
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Se guarda la cadena ingresada 
 				cadena_ingresada=textFieldInd.getText();
+				//Se marca el estado final:
 				String e_final=comboBox.getSelectedItem().toString();
 				for(Estado o: InterfaceUno.mt){
 					if(o.qi.equals(e_final)) o.estadoFinal=true;
 				}
+				//se crea la cinta:
 				Cinta cadena=new Cinta();
 				cadena=Metodos.CrearCinta(cadena_ingresada);
+				//Se guarda el resultado true/false.
 				resultado=Metodos.verificarCadena(InterfaceUno.mt,cadena,"0",cadena.inicio);//se asume que el estado inicial es 0;
+				//se llama a la siguiente interface.
 				Indiv window = new Indiv();
 				window.frmReconocimientoIndividual.setVisible(true);
 				frmTransicionReconocimientoIndividual.setVisible(false);
